@@ -1,0 +1,2 @@
+[workspace]
+members = ["clickhouse-insert", "clickhouse-insert-derive", "client"]
