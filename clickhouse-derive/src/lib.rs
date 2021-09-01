@@ -34,8 +34,9 @@ pub fn insert_derive(input: TokenStream) -> TokenStream {
                 let block = Block::new(table_name)
                 #(#insert_tokens)*
                 ;
-                connection.insert(&block).await?;
-                connection.close().await?;
+                let insert = connection.insert(&block).await?;
+                insert.commit().await?;
+                drop(insert);
                 Ok(())
             }
         }
