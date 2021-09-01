@@ -34,7 +34,7 @@ pub fn insert_derive(input: TokenStream) -> TokenStream {
                 ;
                 connection.insert(&block).await?;
                 connection.close().await?;
-                OK(())
+                Ok(())
             }
         }
     };
