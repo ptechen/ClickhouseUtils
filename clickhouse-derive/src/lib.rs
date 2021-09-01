@@ -18,7 +18,7 @@ pub fn insert_derive(input: TokenStream) -> TokenStream {
                 for field in a {
                     let field = field.ident.as_ref().unwrap();
                     let insert_token = quote! {
-                        .add(stringify!(#field), vec![self.#field.as_ref()])
+                        .add(stringify!(#field), vec![self.#field])
                     };
                     insert_tokens.push(insert_token);
                 }
