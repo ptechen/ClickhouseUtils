@@ -41,6 +41,7 @@ pub fn insert_derive(input: TokenStream) -> TokenStream {
             }
         }
     };
+    eprintln!("{:#?}", tokens.to_string());
     proc_macro::TokenStream::from(tokens)
 }
 
@@ -64,5 +65,6 @@ pub fn query_derive(input: TokenStream) -> TokenStream {
             }
         }
     };
+    eprintln!("{:#?}", tokens.to_string());
     proc_macro::TokenStream::from(tokens)
 }
