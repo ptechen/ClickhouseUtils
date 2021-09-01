@@ -29,8 +29,9 @@ pub fn insert_derive(input: TokenStream) -> TokenStream {
     let tokens = quote! {
         impl Insert for #struct_name {
             fn insert(&self, mut connection: Connection, table_name: &str) -> Result<(), Box<dyn std::error::Error>> {
-                let block = Block::new(table_name);
+                let block = Block::new(table_name)
                 #(#insert_tokens)*
+                ;
                 connection.insert(&block).await?;
                 connection.close().await?;
                 OK(())
