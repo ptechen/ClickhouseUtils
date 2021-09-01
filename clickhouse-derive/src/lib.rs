@@ -28,7 +28,7 @@ pub fn insert_derive(input: TokenStream) -> TokenStream {
     }
     let tokens = quote! {
         impl Insert for #struct_name {
-            fn insert(&self, mut connection: Connection, table_name: &str) -> Result<(), Box<dyn std::error::Error>> {
+            async fn insert(&self, mut connection: Connection, table_name: &str) -> Result<(), Box<dyn std::error::Error>> {
                 let block = Block::new(table_name)
                 #(#insert_tokens)*
                 ;
@@ -47,7 +47,7 @@ pub fn query_derive(input: TokenStream) -> TokenStream {
     let struct_name = parsed_input.ident;
     let tokens = quote! {
         impl Query<#struct_name> for #struct_name {
-            fn query(&self, mut connection: Connection, sql: &str) -> Result<Vec<#struct_name>, Box<dyn std::error::Error>> {
+            async fn query(&self, mut connection: Connection, sql: &str) -> Result<Vec<#struct_name>, Box<dyn std::error::Error>> {
                 let mut query = connection.query(sql).await?;
                 let mut rows = Vec::new();
                 while let Some(block) = query.next().await? {
