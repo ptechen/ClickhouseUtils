@@ -27,6 +27,7 @@ pub fn insert_derive(input: TokenStream) -> TokenStream {
         other => { panic!("ToVec is not yet implemented for: {:?} ", other) }
     }
     let tokens = quote! {
+        #[async_trait]
         impl Insert for #struct_name {
             async fn insert(&self, mut connection: Connection, table_name: &str) -> Result<(), Box<dyn std::error::Error>> {
                 let block = Block::new(table_name)
@@ -46,6 +47,7 @@ pub fn query_derive(input: TokenStream) -> TokenStream {
     let parsed_input: DeriveInput = parse_macro_input!(input);
     let struct_name = parsed_input.ident;
     let tokens = quote! {
+        #[async_trait]
         impl Query<#struct_name> for #struct_name {
             async fn query(&self, mut connection: Connection, sql: &str) -> Result<Vec<#struct_name>, Box<dyn std::error::Error>> {
                 let mut query = connection.query(sql).await?;

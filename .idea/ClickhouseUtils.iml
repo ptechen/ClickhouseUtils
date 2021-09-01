@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/client/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/clickhouse-derive/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/clickhouse/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/main/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
